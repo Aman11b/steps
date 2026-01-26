@@ -9,6 +9,9 @@ const messages = [
 export default function App() {
   // const step = 2;
   const [step, setStep] = useState(1);
+  // let [step, setStep] = useState(1);
+
+  // const [test, setTest] = useState({ name: "ho" });
 
   function handlePrevious() {
     // alert("prev");
@@ -18,6 +21,12 @@ export default function App() {
   function handleNext() {
     // alert("next");
     if (step < 3) setStep(step + 1);
+
+    // BAD PRACTICE
+    // test.name = "hehe";
+
+    // step = step + 1;
+    // nothing happens-> react ahs no way of knowing this is updating state thats way setState is provided as setter function
   }
 
   return (
@@ -29,6 +38,7 @@ export default function App() {
       </div>
       <p className="message">
         Step {step}:{messages[step - 1]}
+        {/* {test.name} */}
       </p>
       <div className="buttons">
         <button
@@ -59,4 +69,5 @@ export default function App() {
  * -> with state react keep UI sync with data
  * ->useState retusn a array it takes defaut value and a function
  * -> useState is called hooks(but only in top level of function not in if or loop or something else)
+ * ->dont update state manually
  */
