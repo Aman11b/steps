@@ -16,12 +16,20 @@ export default function App() {
 
   function handlePrevious() {
     // alert("prev");
-    if (step > 1) setStep(step - 1);
+    if (step > 1) setStep((currentStep) => currentStep - 1);
   }
 
   function handleNext() {
     // alert("next");
-    if (step < 3) setStep(step + 1);
+    if (step < 3) {
+      // setStep(step + 1);
+      // setStep(step + 1);
+
+      // if we do like this still it will call once only so its adviced to change sate via function
+
+      setStep((s) => s + 1);
+      // now if we have written it twice i will work twice
+    }
 
     // BAD PRACTICE
     // test.name = "hehe";
@@ -32,7 +40,7 @@ export default function App() {
 
   return (
     <>
-      <button className="close" onClick={() => setIsOpen(!isOpen)}>
+      <button className="close" onClick={() => setIsOpen((is) => !is)}>
         &times;
       </button>
       {isOpen && (
