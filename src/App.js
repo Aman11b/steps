@@ -9,6 +9,7 @@ const messages = [
 export default function App() {
   // const step = 2;
   const [step, setStep] = useState(1);
+  const [isOpen, setIsOpen] = useState(true);
   // let [step, setStep] = useState(1);
 
   // const [test, setTest] = useState({ name: "ho" });
@@ -30,32 +31,39 @@ export default function App() {
   }
 
   return (
-    <div className="steps">
-      <div className="numbers">
-        <div className={step >= 1 ? "active" : ""}>1</div>
-        <div className={step >= 2 ? "active" : ""}>2</div>
-        <div className={step >= 3 ? "active" : ""}>3</div>
-      </div>
-      <p className="message">
-        Step {step}:{messages[step - 1]}
-        {/* {test.name} */}
-      </p>
-      <div className="buttons">
-        <button
-          style={{ backgroundColor: "#7950f2", color: "#fff" }}
-          // handlePrevious() is function calling and it will make it run automatically hence just passing the value
-          onClick={handlePrevious}
-        >
-          Previous
-        </button>
-        <button
-          style={{ backgroundColor: "#7950f2", color: "#fff" }}
-          onClick={handleNext}
-        >
-          Next
-        </button>
-      </div>
-    </div>
+    <>
+      <button className="close" onClick={() => setIsOpen(!isOpen)}>
+        &times;
+      </button>
+      {isOpen && (
+        <div className="steps">
+          <div className="numbers">
+            <div className={step >= 1 ? "active" : ""}>1</div>
+            <div className={step >= 2 ? "active" : ""}>2</div>
+            <div className={step >= 3 ? "active" : ""}>3</div>
+          </div>
+          <p className="message">
+            Step {step}:{messages[step - 1]}
+            {/* {test.name} */}
+          </p>
+          <div className="buttons">
+            <button
+              style={{ backgroundColor: "#7950f2", color: "#fff" }}
+              // handlePrevious() is function calling and it will make it run automatically hence just passing the value
+              onClick={handlePrevious}
+            >
+              Previous
+            </button>
+            <button
+              style={{ backgroundColor: "#7950f2", color: "#fff" }}
+              onClick={handleNext}
+            >
+              Next
+            </button>
+          </div>
+        </div>
+      )}
+    </>
   );
 }
 
@@ -70,4 +78,12 @@ export default function App() {
  * ->useState retusn a array it takes defaut value and a function
  * -> useState is called hooks(but only in top level of function not in if or loop or something else)
  * ->dont update state manually
+ * -> always term state as im-mutable and use setter function for updates
+ */
+
+/**
+ * mechanics of state
+ * -> we dont manipulate state directly then how to update
+ * -> react upadate conmpoenent view by completely rerending the component
+ * -> react maintains a state which remain contant through the rerendering unless the component is removed from UI which is called un-mounting
  */
